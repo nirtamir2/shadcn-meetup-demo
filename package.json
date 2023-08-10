@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next-static-paths --pages-dir ./src --output . && next dev",
+    "generate-routes": "next-static-paths --pages-dir ./src --output . && :",
     "format": "prettier \"**/*\" --write --ignore-unknown",
     "lint": "next lint",
     "start": "next start",
@@ -18,8 +19,7 @@
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "eslint-config-next": "13.4.13",
-    "lucide-react": "^0.265.0",
+    "lucide-react": "^0.263.0",
     "next": "13.4.13",
     "postcss": "8.4.27",
     "react": "18.2.0",
@@ -30,6 +30,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@nirtamir2/next-static-paths": "^0.3.0",
     "@total-typescript/ts-reset": "^0.4.2",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@tsconfig/strictest": "^2.0.1",

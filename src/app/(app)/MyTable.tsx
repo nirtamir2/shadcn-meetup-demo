@@ -1,11 +1,13 @@
 "use client";
 
 import * as React from "react";
-import {
+import type {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
+} from "@tanstack/react-table";
+import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -37,7 +39,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const data: Payment[] = [
+const data: Array<Payment> = [
   {
     id: "m5gr84i9",
     amount: 316,
@@ -70,27 +72,31 @@ const data: Payment[] = [
   },
 ];
 
-export type Payment = {
+export interface Payment {
   id: string;
   amount: number;
   status: "pending" | "processing" | "success" | "failed";
   email: string;
-};
+}
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: Array<ColumnDef<Payment>> = [
   {
     id: "select",
     header: ({ table }) => (
       <Checkbox
         checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        onCheckedChange={(value) => {
+          table.toggleAllPageRowsSelected(Boolean(value));
+        }}
         aria-label="Select all"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        onCheckedChange={(value) => {
+          row.toggleSelected(Boolean(value));
+        }}
         aria-label="Select row"
       />
     ),
@@ -110,7 +116,9 @@ export const columns: ColumnDef<Payment>[] = [
       return (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          onClick={() => {
+            column.toggleSorting(column.getIsSorted() === "asc");
+          }}
         >
           Email
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -123,7 +131,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "amount",
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
+      const amount = Number.parseFloat(row.getValue("amount"));
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
@@ -157,7 +165,9 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => {
+                void navigator.clipboard.writeText(payment.id);
+              }}
             >
               Copy payment ID
             </DropdownMenuItem>
@@ -165,7 +175,12 @@ export const columns: ColumnDef<Payment>[] = [
             <DropdownMenuItem>View customer</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
             <DeleteCustomer asChild>
-              <DropdownMenuItem danger onSelect={(e) => e.preventDefault()}>
+              <DropdownMenuItem
+                danger
+                onSelect={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 Delete
               </DropdownMenuItem>
             </DeleteCustomer>
@@ -209,7 +224,11 @@ export function MyTable() {
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("email")?.getFilterValue() as
+              | string
+              | undefined) ?? ""
+          }
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
@@ -231,9 +250,9 @@ export function MyTable() {
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
+                    onCheckedChange={(value) => {
+                      column.toggleVisibility(Boolean(value));
+                    }}
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
@@ -263,7 +282,7 @@ export function MyTable() {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length > 0 ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -301,7 +320,9 @@ export function MyTable() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.previousPage()}
+            onClick={() => {
+              table.previousPage();
+            }}
             disabled={!table.getCanPreviousPage()}
           >
             Previous
@@ -309,7 +330,9 @@ export function MyTable() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.nextPage()}
+            onClick={() => {
+              table.nextPage();
+            }}
             disabled={!table.getCanNextPage()}
           >
             Next

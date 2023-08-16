@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 import { MyCard } from "@/app/(app)/MyCard";
 import { MyTable } from "@/app/(app)/MyTable";
 import { Button } from "@/components/ui/button";

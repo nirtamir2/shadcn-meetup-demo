@@ -7,7 +7,7 @@
     "dev": "next-static-paths --pages-dir ./src --output . && next dev --turbo",
     "generate-routes": "next-static-paths --pages-dir ./src --output . && :",
     "format": "prettier \"**/*\" --write --ignore-unknown",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "start": "next start",
     "type-check": "tsc --pretty --noEmit"
   },

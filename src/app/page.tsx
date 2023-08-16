@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const cards: Array<ComponentProps<typeof MyCard>> = [
   {
-    content: <p>Card Footer</p>,
+    content: <p>Card Footeir</p>,
     title: "Card Title 1",
     description: "Card Description 2",
     footer: <p>Card Footer</p>,

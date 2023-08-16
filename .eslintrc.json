@@ -15,7 +15,6 @@
   ],
   "rules": {
     "import/no-namespace": "off",
-    "import/no-unused-modules": "off",
-    "tsdoc/syntax": "off"
+    "import/no-unused-modules": "off"
   }
 }

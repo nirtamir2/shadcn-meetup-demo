@@ -14,6 +14,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import { DeleteCustomer } from "@/app/(app)/DeleteCustomer";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -156,6 +157,11 @@ export const columns: ColumnDef<Payment>[] = [
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DeleteCustomer asChild>
+              <DropdownMenuItem danger onSelect={(e) => e.preventDefault()}>
+                Delete
+              </DropdownMenuItem>
+            </DeleteCustomer>
           </DropdownMenuContent>
         </DropdownMenu>
       );

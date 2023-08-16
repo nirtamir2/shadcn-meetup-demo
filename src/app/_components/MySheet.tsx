@@ -1,4 +1,4 @@
-import type { Payment } from "@/app/(app)/MyTable";
+import type { Payment } from "@/app/_components/MyTable";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

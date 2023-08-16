@@ -16,8 +16,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
-import { DeleteCustomer } from "@/app/(app)/DeleteCustomer";
-import { MySheet } from "@/app/(app)/MySheet";
+import { DeleteCustomer } from "@/app/_components/DeleteCustomer";
+import { MySheet } from "@/app/_components/MySheet";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {

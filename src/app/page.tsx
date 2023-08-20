@@ -3,7 +3,6 @@ import { MyCard } from "@/app/_components/MyCard";
 import { MyTable } from "@/app/_components/MyTable";
 import { Button } from "@/components/ui/button";
 
-
 const cards: Array<ComponentProps<typeof MyCard>> = [
   {
     content: <p>Card Footeir</p>,
@@ -13,13 +12,13 @@ const cards: Array<ComponentProps<typeof MyCard>> = [
   },
   {
     content: <p>Card Footer</p>,
-    title: "Card Title",
+    title: "Card Title 2",
     description: "Card Description",
     footer: <p>Card Footer</p>,
   },
   {
     content: <p>Card Footer</p>,
-    title: "Card Title",
+    title: "Card Title 3",
     description: "Card Description",
     footer: <p>Card Footer</p>,
   },
